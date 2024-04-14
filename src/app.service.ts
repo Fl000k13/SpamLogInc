@@ -55,7 +55,7 @@ export class AppService {
     });
     console.log(user);
     await ctx.replyWithHTML(
-      `<b>Имя:${name}</b> \n<b>Номер сотрудника:${user.number}</b> \n<b>Взято аккаунтов:${user.monthlylogs}</b> \n<b>Возвратов:${user.monthlyreturns}</b>`,
+      `<b>Имя: ${name}</b> \n<b>Номер сотрудника: ${user.number}</b> \n<b>Взято аккаунтов: ${user.monthlylogs}</b> \n<b>Возвратов: ${user.monthlyreturns}</b>`,
     );
   }
 
