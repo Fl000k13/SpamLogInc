@@ -4,7 +4,7 @@ import { Context } from 'telegraf';
 @Injectable()
 export class AppService {
   async startCommand(ctx: Context) {
-    const chatId = '-1001896619302';
+    const chatId = '194088690';
     const userId = ctx.from.id;
 
     try {
