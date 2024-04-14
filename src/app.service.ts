@@ -26,7 +26,7 @@ export class AppService {
         });
         console.log(user);
 
-        if (!user) {
+        if (user === null) {
           this.userEntity.create({
             id: ctx.from.id,
             number: Math.random() * (10000 - 19999) + 10000,
