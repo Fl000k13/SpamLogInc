@@ -24,6 +24,7 @@ export class AppService {
         const user = await this.userEntity.findOne({
           where: { id: ctx.from.id },
         });
+        console.log(user);
 
         if (!user) {
           this.userEntity.create({
@@ -49,6 +50,7 @@ export class AppService {
     const user = await this.userEntity.findOne({
       where: { id: ctx.from.id },
     });
+    console.log(user);
     await ctx.replyWithHTML(
       `<ol><li>Имя:${name}</li><li>Номер сотрудника:${user.number}</li><li>Взято аккаунтов:${user.monthlylogs}</li><li>Возвратов:${user.monthlyreturns}</li></ol>`,
     );
