@@ -14,9 +14,7 @@ export class AppService {
         chatMember.status === 'member' ||
         chatMember.status === 'administrator'
       ) {
-        return await ctx.replyWithHTML(
-          `Ты подписан на секретный канал с доступом`,
-        );
+        return await ctx.reply(`Ты подписан на секретный канал с доступом`);
       } else {
         return await ctx.replyWithHTML(process.env.START_TEXT);
       }
