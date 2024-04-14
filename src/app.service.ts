@@ -16,9 +16,9 @@ export class AppService {
         chatMember.status === 'administrator'
       ) {
         await ctx.reply(
-          `Привет, ${ctx.from.username}, в этом месяце ты взял ... аккаунтов, осталось ...}`,
+          `Привет, ${ctx.from.first_name}. Меню:`,
+          actionButtons(),
         );
-        await ctx.reply('Какие аккаунты интересуют?', actionButtons());
       } else {
         await ctx.replyWithHTML(process.env.START_TEXT);
       }
