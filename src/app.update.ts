@@ -1,4 +1,4 @@
-import { InjectBot, Start, Update } from 'nestjs-telegraf';
+import { Action, InjectBot, Start, Update } from 'nestjs-telegraf';
 import { AppService } from './app.service';
 import { Context, Telegraf } from 'telegraf';
 
@@ -10,7 +10,10 @@ export class AppUpdate {
   ) {}
 
   @Start()
-  async startCommand(ctx: Context) {
+  startCommand(ctx: Context) {
     return this.appService.startCommand(ctx);
   }
+
+  @Action('profile')
+  clickProfile() {}
 }
