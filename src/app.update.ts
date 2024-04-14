@@ -18,4 +18,14 @@ export class AppUpdate {
   clickProfile(ctx: Context) {
     return this.appService.clickProfile(ctx);
   }
+
+  @Action('logs')
+  clickLogs(ctx: Context) {
+    return this.appService.clickLogs(ctx);
+  }
+
+  @Action('support')
+  clickSupport(ctx: Context) {
+    return this.appService.clickSupport(ctx);
+  }
 }

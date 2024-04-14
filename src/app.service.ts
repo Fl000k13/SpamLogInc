@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Context } from 'telegraf';
-import { actionButtons } from './app.buttons';
+import { logsButtons, startingButtons } from './app.buttons';
 
 @Injectable()
 export class AppService {
@@ -15,10 +15,7 @@ export class AppService {
         chatMember.status === 'member' ||
         chatMember.status === 'administrator'
       ) {
-        await ctx.reply(
-          `Привет, ${ctx.from.first_name}. Меню:`,
-          actionButtons(),
-        );
+        await ctx.reply(`Привет, ${ctx.from.first_name}.`, startingButtons());
       } else {
         await ctx.replyWithHTML(process.env.START_TEXT);
       }
@@ -32,5 +29,14 @@ export class AppService {
 
   async clickProfile(ctx: Context) {
     await ctx.reply('Твой профиль');
+  }
+
+  async clickLogs(ctx: Context) {
+    await ctx.reply('Выбери соц. сеть', logsButtons());
+  }
+
+  async clickSupport(ctx: Context) {
+    await ctx.reply('Системный администратор:');
+    await ctx.replyWithContact('79020410729', 'Fl0k13');
   }
 }
