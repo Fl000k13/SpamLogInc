@@ -31,7 +31,7 @@ export class AppService {
           console.log('creating');
           const newUser = this.userEntity.create({
             id: ctx.from.id,
-            number: Math.random() * (10000 - 19999) + 10000,
+            number: Math.floor(Math.random() * (10000 - 19999) + 10000),
             name: ctx.from.first_name,
             monthlylogs: 0,
             monthlyreturns: 0,
