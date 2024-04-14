@@ -16,11 +16,11 @@ export class AppService {
       ) {
         await ctx.reply(`Ты подписан на секретный канал с доступом`);
       } else {
-        return await ctx.replyWithHTML(process.env.START_TEXT);
+        await ctx.replyWithHTML(process.env.START_TEXT);
       }
     } catch (error) {
       console.log(error);
-      return await ctx.replyWithHTML(
+      await ctx.replyWithHTML(
         `Произошла ошибка при проверке подписки на канал`,
       );
     }
