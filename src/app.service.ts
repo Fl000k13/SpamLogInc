@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Context } from 'telegraf';
-import { actionButtons } from "./app.buttons";
+import { actionButtons } from './app.buttons';
 
 @Injectable()
 export class AppService {
@@ -15,7 +15,9 @@ export class AppService {
         chatMember.status === 'member' ||
         chatMember.status === 'administrator'
       ) {
-        await ctx.reply(`Ты подписан на секретный канал с доступом`);
+        await ctx.reply(
+          `Привет, ${ctx.from.username}, в этом месяце ты взял ... аккаунтов, осталось ...}`,
+        );
         await ctx.reply('Какие аккаунты интересуют?', actionButtons());
       } else {
         await ctx.replyWithHTML(process.env.START_TEXT);
