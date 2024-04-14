@@ -54,8 +54,8 @@ export class AppService {
       where: { id: ctx.from.id },
     });
     console.log(user);
-    await ctx.replyWithHTML(
-      `<ol><li>Имя:${name}</li><li>Номер сотрудника:${user.number}</li><li>Взято аккаунтов:${user.monthlylogs}</li><li>Возвратов:${user.monthlyreturns}</li></ol>`,
+    await ctx.reply(
+      `Имя:${name}, Номер сотрудника:${user.number}, Взято аккаунтов:${user.monthlylogs}, Возвратов:${user.monthlyreturns}`,
     );
   }
 
