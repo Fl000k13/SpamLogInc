@@ -106,8 +106,8 @@ export class AppService {
 
   async clickCity(ctx: Context, GU: boolean) {
     const data = ctx.callbackQuery.message;
-    console.log(data);
-    console.log(ctx.callbackQuery);
+    console.log(data['reply_markup']);
+    console.log(ctx);
     console.log(GU);
   }
 }
