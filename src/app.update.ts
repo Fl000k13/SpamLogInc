@@ -1,13 +1,10 @@
-import { Action, InjectBot, Start, Update } from 'nestjs-telegraf';
+import { Action, Start, Update } from 'nestjs-telegraf';
 import { AppService } from './app.service';
-import { Context, Telegraf } from 'telegraf';
+import { Context } from 'telegraf';
 
 @Update()
 export class AppUpdate {
-  constructor(
-    @InjectBot() private readonly bot: Telegraf<Context>,
-    private readonly appService: AppService,
-  ) {}
+  constructor(private readonly appService: AppService) {}
 
   @Start()
   startCommand(ctx: Context) {
@@ -27,5 +24,30 @@ export class AppUpdate {
   @Action('support')
   clickSupport(ctx: Context) {
     return this.appService.clickSupport(ctx);
+  }
+
+  @Action('vk')
+  clickVk(ctx: Context) {
+    return this.appService.clickVk(ctx);
+  }
+
+  @Action('vkGU')
+  clickVkGU(ctx: Context) {
+    return this.appService.clickVkGU(ctx);
+  }
+
+  @Action('tg')
+  clickTg(ctx: Context) {
+    return this.appService.clickTg(ctx);
+  }
+
+  @Action('tgFA')
+  clickTgFA(ctx: Context) {
+    return this.appService.clickTgFA(ctx);
+  }
+
+  @Action('refund')
+  clickRefund(ctx: Context) {
+    return this.appService.clickRefund(ctx);
   }
 }

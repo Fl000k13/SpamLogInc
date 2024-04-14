@@ -1,14 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { Context } from 'telegraf';
-import { logsButtons, startingButtons } from './app.buttons';
+import { Context, Telegraf } from 'telegraf';
+import {
+  cityButtons,
+  logsButtons,
+  sexButtons,
+  startingButtons,
+} from './app.buttons';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import { Account } from './entities/account.entity';
+import { InjectBot } from 'nestjs-telegraf';
 
 @Injectable()
 export class AppService {
   constructor(
     @InjectRepository(User) private readonly userEntity: Repository<User>,
+    @InjectRepository(Account)
+    private readonly accountEntity: Repository<Account>,
+    @InjectBot() private readonly bot: Telegraf<Context>,
   ) {}
   async startCommand(ctx: Context) {
     const chatId = '194088690';
@@ -40,11 +50,11 @@ export class AppService {
         }
         await ctx.reply(`Привет, ${ctx.from.first_name}.`, startingButtons());
       } else {
-        await ctx.replyWithHTML(process.env.START_TEXT);
+        await ctx.reply('kek');
       }
     } catch (error) {
       console.log(error);
-      await ctx.replyWithHTML(process.env.START_TEXT);
+      await ctx.reply('kek');
     }
   }
 
@@ -66,5 +76,25 @@ export class AppService {
   async clickSupport(ctx: Context) {
     await ctx.reply('Системный администратор:');
     await ctx.replyWithContact('79020410729', 'Fl0k13');
+  }
+
+  async clickVk(ctx: Context) {
+    await ctx.replyWithHTML(`<b>\nВыберите город:</b>`, cityButtons());
+  }
+
+  async clickVkGU(ctx: Context) {
+    await ctx.replyWithHTML(`<b>\nВыберите город:</b>`, cityButtons());
+  }
+
+  async clickTg(ctx: Context) {
+    await ctx.replyWithHTML(`<b>\nВыберите пол:</b>`, sexButtons());
+  }
+
+  async clickTgFA(ctx: Context) {
+    await ctx.replyWithHTML(`<b>\nВыберите пол:</b>`, sexButtons());
+  }
+
+  async clickRefund(ctx: Context) {
+    await ctx.reply('Введите ваше сообщение:');
   }
 }

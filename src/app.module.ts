@@ -6,6 +6,7 @@ import { AppUpdate } from './app.update';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { User } from './entities/user.entity';
+import { Account } from './entities/account.entity';
 
 const sessions = new LocalSession({ database: 'session_db.json' });
 
@@ -22,12 +23,12 @@ const sessions = new LocalSession({ database: 'session_db.json' });
       database: 'spamzone',
       username: 'admin',
       password: 'admin',
-      entities: [User],
+      entities: [User, Account],
       migrations: [join(__dirname, '**', '*.migration.{ts,js}')],
       synchronize: true,
       schema: 'public',
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Account]),
   ],
   providers: [AppService, AppUpdate],
 })

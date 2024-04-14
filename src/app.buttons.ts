@@ -17,3 +17,17 @@ export function logsButtons() {
     Markup.button.callback('Возврат аккаунта', 'refund'),
   ]);
 }
+
+export function cityButtons() {
+  return Markup.inlineKeyboard([
+    Markup.button.callback('🧂Спб', 'spb'),
+    Markup.button.callback('🇩🇪Калининград', 'kalin'),
+  ]);
+}
+
+export function sexButtons() {
+  return Markup.inlineKeyboard([
+    Markup.button.callback('👦Мужской', 'male'),
+    Markup.button.callback('👩Женский', 'female'),
+  ]);
+}
