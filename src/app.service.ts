@@ -21,12 +21,14 @@ export class AppService {
         chatMember.status === 'member' ||
         chatMember.status === 'administrator'
       ) {
+        console.log(ctx.from.id);
         const user = await this.userEntity.findOne({
           where: { id: ctx.from.id },
         });
         console.log(user);
 
         if (user === null) {
+          console.log('creating');
           this.userEntity.create({
             id: ctx.from.id,
             number: Math.random() * (10000 - 19999) + 10000,
