@@ -19,29 +19,29 @@ export function logsButtons() {
 }
 
 export function cityButtons() {
-  return Markup.inlineKeyboard([
+  return Markup.keyboard([
     Markup.button.callback('🧂Спб', 'spb'),
     Markup.button.callback('🇩🇪Калининград', 'kalin'),
-  ]);
+  ]).resize();
 }
 
 export function cityGUButtons() {
-  return Markup.inlineKeyboard([
-    Markup.button.callback('🧂Спб', 'spbGU'),
-    Markup.button.callback('🇩🇪Калининград', 'kalinGU'),
-  ]);
+  return Markup.keyboard([
+    Markup.button.callback('🧂Спб(ГУ)', 'spbGU'),
+    Markup.button.callback('🇩🇪Калининград(ГУ)', 'kalinGU'),
+  ]).resize();
 }
 
 export function sexButtons() {
-  return Markup.inlineKeyboard([
+  return Markup.keyboard([
     Markup.button.callback('👦Мужской', 'male'),
     Markup.button.callback('👩Женский', 'female'),
-  ]);
+  ]).resize();
 }
 
 export function sexFAButtons() {
-  return Markup.inlineKeyboard([
-    Markup.button.callback('👦Мужской', 'maleFA'),
-    Markup.button.callback('👩Женский', 'femaleFA'),
-  ]);
+  return Markup.keyboard([
+    Markup.button.callback('👦Мужской(2FA)', 'maleFA'),
+    Markup.button.callback('👩Женский(2FA)', 'femaleFA'),
+  ]).resize();
 }

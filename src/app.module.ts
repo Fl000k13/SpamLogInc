@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { User } from './entities/user.entity';
 import { Account } from './entities/account.entity';
+import { LogScene } from './log.scene';
 
 const sessions = new LocalSession({ database: 'session_db.json' });
 
@@ -30,6 +31,6 @@ const sessions = new LocalSession({ database: 'session_db.json' });
     }),
     TypeOrmModule.forFeature([User, Account]),
   ],
-  providers: [AppService, AppUpdate],
+  providers: [AppService, AppUpdate, LogScene],
 })
 export class AppModule {}

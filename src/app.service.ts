@@ -104,9 +104,23 @@ export class AppService {
     await ctx.reply('Введите ваше сообщение:');
   }
 
-  async clickCity(ctx: Context, GU: boolean) {
-    const data = ctx.callbackQuery.message;
-    console.log(data['reply_markup']['inline_keyboard']);
-    console.log(GU);
+  // async clickCity(ctx: Context, GU: boolean) {
+  //   const data = ctx.callbackQuery.message;
+  //   console.log(data['reply_markup']['inline_keyboard']);
+  //   console.log(GU);
+  // }
+
+  async clickController(ctx: Context, GU: boolean, type?: string) {
+
+  }
+
+  async anotherClick(ctx: Context, GU: boolean, type?: string) {
+    switch (type) {
+      case 'spb':
+        console.log('spb');
+        break;
+      case 'kalin':
+        console.log('kalin');
+    }
   }
 }
