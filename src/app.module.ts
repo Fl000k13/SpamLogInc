@@ -25,6 +25,7 @@ const sessions = new LocalSession({ database: 'session_db.json' });
       entities: [User],
       migrations: [join(__dirname, '**', '*.migration.{ts,js}')],
       synchronize: true,
+      schema: 'public',
     }),
     TypeOrmModule.forFeature([User]),
   ],
