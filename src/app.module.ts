@@ -5,7 +5,7 @@ import * as LocalSession from 'telegraf-session-local';
 import { AppUpdate } from './app.update';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
-import * as process from 'process';
+import { User } from './entities/user.entity';
 
 const sessions = new LocalSession({ database: 'session_db.json' });
 
@@ -22,7 +22,7 @@ const sessions = new LocalSession({ database: 'session_db.json' });
       database: 'spamzone',
       username: 'admin',
       password: 'admin',
-      entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+      entities: [join(__dirname, '**', '*.entity.{ts,js}'), User],
       migrations: [join(__dirname, '**', '*.migration.{ts,js}')],
       synchronize: true,
     }),
