@@ -11,7 +11,7 @@ import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { Account } from './entities/account.entity';
 import { InjectBot } from 'nestjs-telegraf';
-import * as process from "process";
+import * as process from 'process';
 
 @Injectable()
 export class AppService {
@@ -51,11 +51,17 @@ export class AppService {
         }
         await ctx.reply(`Привет, ${ctx.from.first_name}.`, startingButtons());
       } else {
-        await ctx.reply(process.env.START_TEXT);
+        await ctx.reply(
+          'Привет, это хранилище аккаунтов Spam Zone. Перед началом работы обратитесь к системному администратору, для предоставления доступа к платформе.' +
+            'Ежедневные лимиты: Vk - 5шт. Tg - 5шт (не считая замены).',
+        );
       }
     } catch (error) {
       console.log(error);
-      await ctx.reply(process.env.START_TEXT);
+      await ctx.reply(
+        'Привет, это хранилище аккаунтов Spam Zone. Перед началом работы обратитесь к системному администратору, для предоставления доступа к платформе.' +
+          'Ежедневные лимиты: Vk - 5шт. Tg - 5шт (не считая замены).',
+      );
     }
   }
 
