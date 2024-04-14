@@ -106,8 +106,7 @@ export class AppService {
 
   async clickCity(ctx: Context, GU: boolean) {
     const data = ctx.callbackQuery.message;
-    console.log(data['reply_markup']);
-    console.log(ctx);
+    console.log(data['reply_markup']['inline_keyboard']);
     console.log(GU);
   }
 }
