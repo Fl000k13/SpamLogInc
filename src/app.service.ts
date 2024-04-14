@@ -11,6 +11,7 @@ import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { Account } from './entities/account.entity';
 import { InjectBot } from 'nestjs-telegraf';
+import * as process from "process";
 
 @Injectable()
 export class AppService {
@@ -50,11 +51,11 @@ export class AppService {
         }
         await ctx.reply(`Привет, ${ctx.from.first_name}.`, startingButtons());
       } else {
-        await ctx.reply('kek');
+        await ctx.reply(process.env.START_TEXT);
       }
     } catch (error) {
       console.log(error);
-      await ctx.reply('kek');
+      await ctx.reply(process.env.START_TEXT);
     }
   }
 
