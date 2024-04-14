@@ -15,5 +15,7 @@ export class AppUpdate {
   }
 
   @Action('profile')
-  clickProfile() {}
+  clickProfile(ctx: Context) {
+    return this.appService.clickProfile(ctx);
+  }
 }

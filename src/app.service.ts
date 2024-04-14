@@ -30,5 +30,7 @@ export class AppService {
     }
   }
 
-
+  async clickProfile(ctx: Context) {
+    await ctx.reply('Твой профиль');
+  }
 }
