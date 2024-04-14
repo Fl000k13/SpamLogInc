@@ -25,9 +25,23 @@ export function cityButtons() {
   ]);
 }
 
+export function cityGUButtons() {
+  return Markup.inlineKeyboard([
+    Markup.button.callback('🧂Спб', 'spbGU'),
+    Markup.button.callback('🇩🇪Калининград', 'kalinGU'),
+  ]);
+}
+
 export function sexButtons() {
   return Markup.inlineKeyboard([
     Markup.button.callback('👦Мужской', 'male'),
     Markup.button.callback('👩Женский', 'female'),
+  ]);
+}
+
+export function sexFAButtons() {
+  return Markup.inlineKeyboard([
+    Markup.button.callback('👦Мужской', 'maleFA'),
+    Markup.button.callback('👩Женский', 'femaleFA'),
   ]);
 }

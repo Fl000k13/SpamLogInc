@@ -1,17 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { Context, Telegraf } from 'telegraf';
 import {
-  cityButtons,
+  cityButtons, cityGUButtons,
   logsButtons,
-  sexButtons,
-  startingButtons,
-} from './app.buttons';
+  sexButtons, sexFAButtons,
+  startingButtons
+} from "./app.buttons";
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { Account } from './entities/account.entity';
 import { InjectBot } from 'nestjs-telegraf';
-import * as process from 'process';
 
 @Injectable()
 export class AppService {
@@ -90,7 +89,7 @@ export class AppService {
   }
 
   async clickVkGU(ctx: Context) {
-    await ctx.replyWithHTML(`<b>\nВыберите город:</b>`, cityButtons());
+    await ctx.replyWithHTML(`<b>\nВыберите город:</b>`, cityGUButtons());
   }
 
   async clickTg(ctx: Context) {
@@ -98,10 +97,17 @@ export class AppService {
   }
 
   async clickTgFA(ctx: Context) {
-    await ctx.replyWithHTML(`<b>\nВыберите пол:</b>`, sexButtons());
+    await ctx.replyWithHTML(`<b>\nВыберите пол:</b>`, sexFAButtons());
   }
 
   async clickRefund(ctx: Context) {
     await ctx.reply('Введите ваше сообщение:');
+  }
+
+  async clickCity(ctx: Context, GU: boolean) {
+    const data = ctx.callbackQuery.message;
+    console.log(data);
+    console.log(ctx.callbackQuery);
+    console.log(GU);
   }
 }

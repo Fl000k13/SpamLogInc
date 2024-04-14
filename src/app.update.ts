@@ -50,4 +50,9 @@ export class AppUpdate {
   clickRefund(ctx: Context) {
     return this.appService.clickRefund(ctx);
   }
+
+  @Action(['spb', 'kalin', 'spbGU', 'kalinGU'])
+  clickCity(ctx: Context, GU: boolean) {
+    return this.appService.clickCity(ctx, GU);
+  }
 }
