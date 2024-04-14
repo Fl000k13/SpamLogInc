@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { Context } from 'telegraf';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  async startCommand(ctx: Context) {
+    await ctx.replyWithHTML(process.env.START_TEXT);
   }
 }

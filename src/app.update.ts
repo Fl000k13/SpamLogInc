@@ -11,6 +11,6 @@ export class AppUpdate {
 
   @Start()
   async startCommand(ctx: Context) {
-    await ctx.reply(process.env.START_TEXT);
+    return this.appService.startCommand(ctx);
   }
 }
