@@ -22,10 +22,11 @@ const sessions = new LocalSession({ database: 'session_db.json' });
       database: 'spamzone',
       username: 'admin',
       password: 'admin',
-      entities: [join(__dirname, '**', '*.entity.{ts,js}'), User],
+      entities: [User],
       migrations: [join(__dirname, '**', '*.migration.{ts,js}')],
       synchronize: true,
     }),
+    TypeOrmModule.forFeature([User]),
   ],
   providers: [AppService, AppUpdate],
 })
