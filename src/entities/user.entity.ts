@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn } from 'typeorm';
 
 @Entity({ name: 'User', schema: 'public' })
 export class User {
-  @PrimaryColumn({ type: 'integer', nullable: false })
+  @PrimaryColumn({ type: 'bigint', nullable: false })
   id: number;
 
   @Column({ type: 'text' })
