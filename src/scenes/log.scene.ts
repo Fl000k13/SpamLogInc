@@ -115,10 +115,11 @@ export class LogScene {
   @Hears(['1', '2', '3', '4', '5'])
   async final(@Ctx() ctx: SceneContext) {
     const number = parseInt(ctx.message['text']);
-    console.log(number);
-    console.log(this.socialChoose);
-    console.log(this.cityChoose);
-    console.log(this.sexChoose);
+    if (this.socialChoose === 'TG' || 'TG(2FA)') {
+      await ctx.replyWithHTML(
+        `Ты выбрал: \n<b>Соц. сеть: </b>${this.#sceneChooser(this.socialChoose)} \n<b>Пол: </b>${this.#sexChooser(this.sexChoose)} \n<b>Кол-во аккаунтов: </b>${number}`,
+      );
+    }
     await ctx.replyWithHTML(
       `Ты выбрал: \n<b>Соц. сеть: </b>${this.#sceneChooser(this.socialChoose)} \n<b>Город: </b>${this.#cityChooser(this.cityChoose)} \n<b>Пол: </b>${this.#sexChooser(this.sexChoose)} \n<b>Кол-во аккаунтов: </b>${number}`,
     );

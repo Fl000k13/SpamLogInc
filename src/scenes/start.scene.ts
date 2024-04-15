@@ -26,6 +26,7 @@ export class StartScene {
 
   @Action('logs')
   async startLogsScene(@Ctx() ctx: SceneContext) {
+    await ctx.deleteMessage(this.MESSAGE_ID);
     await ctx.scene.enter('logScene');
   }
 
