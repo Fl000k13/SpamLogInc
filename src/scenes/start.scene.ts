@@ -13,7 +13,6 @@ export class StartScene {
   ) {}
   @SceneEnter()
   async startEnter(@Ctx() ctx: SceneContext) {
-    await ctx.answerCbQuery(`Привет, ${ctx.from.first_name}`);
     await ctx.editMessageReplyMarkup({
       inline_keyboard: [
         [{ text: '📜Аккаунты', callback_data: 'logs' }],
