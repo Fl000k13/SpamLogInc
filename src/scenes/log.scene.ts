@@ -13,6 +13,7 @@ export class LogScene {
   @SceneEnter()
   async logEnter(@Ctx() ctx: SceneContext) {
     await ctx.answerCbQuery('Выберите соц. сеть');
+    console.log(ctx.message);
     await ctx.editMessageReplyMarkup({
       inline_keyboard: [
         [{ text: 'VK', callback_data: 'vk' }],
