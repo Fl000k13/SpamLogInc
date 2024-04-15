@@ -18,7 +18,7 @@ export class LogScene {
         [{ text: 'TG', callback_data: 'tg' }],
         [{ text: 'TG(2FA)', callback_data: 'tgFA' }],
         [{ text: 'Возврат', callback_data: 'refund' }],
-        [{ text: '🔙', callback_data: 'backMenu' }],
+        [{ text: '◀️', callback_data: 'backMenu' }],
       ],
     });
   }

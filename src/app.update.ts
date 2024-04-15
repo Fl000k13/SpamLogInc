@@ -8,28 +8,28 @@ export class AppUpdate {
   constructor(private readonly appService: AppService) {}
 
   @Start()
-  startCommand(ctx: Context) {
-    return this.appService.startCommand(ctx);
+  startCommand(ctx: SceneContext) {
+    ctx.scene.enter('startScene');
   }
 
-  @Action('profile')
-  clickProfile(ctx: Context) {
-    return this.appService.clickProfile(ctx);
-  }
+  // @Action('profile')
+  // clickProfile(ctx: Context) {
+  //   return this.appService.clickProfile(ctx);
+  // }
 
   // @Action('logs')
   // clickLogs(ctx: Context) {
   //   return this.appService.clickLogs(ctx);
   // }
 
-  @Action('logs')
-  clickLogs(ctx: SceneContext) {
-    ctx.scene.enter('logScene');
-  }
+  // @Action('logs')
+  // clickLogs(ctx: SceneContext) {
+  //   ctx.scene.enter('logScene');
+  // }
 
   @Action('backMenu')
-  clickBackToMenu(ctx: Context) {
-    return this.appService.startCommand(ctx);
+  clickBackToMenu(ctx: SceneContext) {
+    ctx.scene.enter('startScene');
   }
 
   @Action('support')
