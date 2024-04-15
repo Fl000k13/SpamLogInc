@@ -25,22 +25,10 @@ export class AppService {
   async startCommand(ctx: Context) {
     try {
       console.log(ctx.from.id);
-      // const user = await this.userEntity.findOne({
-      //   where: { id: ctx.from.id },
-      // });
-      // console.log(user);
-
-      // if (user === null) {
-      //   console.log('creating');
-      //   const newUser = this.userEntity.create({
-      //     id: ctx.from.id,
-      //     number: Math.floor(Math.random() * (10000 - 19999) + 10000),
-      //     name: ctx.from.first_name,
-      //     monthlylogs: 0,
-      //     monthlyreturns: 0,
-      //   });
-      //   await this.userEntity.save(newUser);
-      // }
+      const user = await this.userEntity.findOne({
+        where: { id: ctx.from.id },
+      });
+      console.log(user);
 
       await ctx.reply(`Привет, ${ctx.from.first_name}.`, startingButtons());
       // } else {
