@@ -119,6 +119,10 @@ export class LogScene {
   }
 
   #cityChooser(city: string) {
+    if (city === undefined) {
+      return 'Без города(TG)';
+    }
+
     switch (city) {
       case 'kalin':
         return 'Калининград';
