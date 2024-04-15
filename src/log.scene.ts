@@ -95,10 +95,44 @@ export class LogScene {
 
   @Hears(['1', '2', '3', '4', '5'])
   async final(@Ctx() ctx: Context) {
-    const number = ctx.message['text'];
+    const number = parseInt(ctx.message['text']);
     console.log(number);
     console.log(this.socialChoose);
     console.log(this.cityChoose);
     console.log(this.sexChoose);
+    await ctx.replyWithHTML(
+      `Ты выбрал: \n<b>Соц. сеть</b>${this.#sceneChooser(this.socialChoose)} \n<b>Город:</b>${this.#cityChooser(this.cityChoose)} \n<b>Пол:</b>${this.#sexChooser(this.sexChoose)} \n<b>Кол-во аккаунтов:</b>${number}`,
+    );
+  }
+
+  #sceneChooser(type: string) {
+    switch (type) {
+      case 'vk':
+        return 'VK';
+      case 'vkGU':
+        return 'VK(ГУ)';
+      case 'tg':
+        return 'TG';
+      case 'tgFA':
+        return 'tgFA';
+    }
+  }
+
+  #cityChooser(city: string) {
+    switch (city) {
+      case 'kalin':
+        return 'Калининград';
+      case 'spb':
+        return 'Спб';
+    }
+  }
+
+  #sexChooser(sex: string) {
+    switch (sex) {
+      case 'male':
+        return 'Мужской';
+      case 'female':
+        return 'Женский';
+    }
   }
 }
