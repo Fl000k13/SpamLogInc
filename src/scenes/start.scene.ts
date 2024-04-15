@@ -4,7 +4,7 @@ import { SceneContext } from 'telegraf/scenes';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../entities/user.entity';
 import { Repository } from 'typeorm';
-import { startingButtons } from "../app.buttons";
+import { startingButtons } from '../app.buttons';
 
 @Injectable()
 @Scene('startScene')
@@ -17,9 +17,9 @@ export class StartScene {
   async startEnter(@Ctx() ctx: SceneContext) {
     const message = await ctx.replyWithHTML(
       `<b>Привет, ${ctx.from.first_name}</b>`,
+      startingButtons(),
     );
     this.MESSAGE_ID = message.message_id;
-    return startingButtons();
   }
 
   @Action('logs')
