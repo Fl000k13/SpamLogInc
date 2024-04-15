@@ -22,7 +22,6 @@ export class StartScene {
         ],
       },
     });
-    return keyboard;
   }
 
   @Action('logs')
