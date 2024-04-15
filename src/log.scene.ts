@@ -1,11 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { Action, Ctx, Scene, SceneEnter } from 'nestjs-telegraf';
+import { Action, Ctx, On, Scene, SceneEnter } from 'nestjs-telegraf';
 import { SceneContext } from 'telegraf/scenes';
 import { Update } from 'telegraf/typings/core/types/typegram';
+import { Context } from 'telegraf';
 
 @Injectable()
 @Scene('logScene')
 export class LogScene {
+  private socialChoose: string;
+  private sexChoose: string;
+  private cityChoose: string;
   @SceneEnter()
   async logEnter(@Ctx() ctx: SceneContext) {
     await ctx.reply('Выберите соц. сеть', {
@@ -21,12 +25,80 @@ export class LogScene {
     });
   }
 
-  @Action(/vk|vkGu|tg|tgFa/)
-  async fuck(
+  @Action(/vk|vkGu/)
+  async vkClick(
     @Ctx() ctx: SceneContext & { update: Update.CallbackQueryUpdate },
   ) {
     const query = ctx.update.callback_query;
     const userAnswer = 'data' in query ? query.data : null;
-    console.log(userAnswer);
+
+    console.log('vk', userAnswer);
+
+    this.socialChoose = userAnswer;
+    await ctx.reply('Выберите город', {
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '🧂Спб', callback_data: 'spb' }],
+          [{ text: '🇩🇪Калининград', callback_data: 'kalin' }],
+        ],
+      },
+    });
+  }
+
+  @Action(/tg|tgFA/)
+  async tgClick(@Ctx() ctx: Context & { update: Update.CallbackQueryUpdate }) {
+    const query = ctx.update.callback_query;
+    const userAnswer = 'data' in query ? query.data : null;
+
+    console.log('tg', userAnswer);
+
+    this.socialChoose = userAnswer;
+    await ctx.reply('Выберите пол', {
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '👦Мужской', callback_data: 'male' }],
+          [{ text: '👩Женский', callback_data: 'female' }],
+        ],
+      },
+    });
+  }
+
+  @Action(/spb|kalin/)
+  async cityClick(
+    @Ctx() ctx: Context & { update: Update.CallbackQueryUpdate },
+  ) {
+    const query = ctx.update.callback_query;
+    const userAnswer = 'data' in query ? query.data : null;
+
+    console.log('city', userAnswer);
+
+    this.cityChoose = userAnswer;
+    await ctx.reply('Выберите пол', {
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '👦Мужской', callback_data: 'male' }],
+          [{ text: '👩Женский', callback_data: 'female' }],
+        ],
+      },
+    });
+  }
+
+  @Action(/male|female/)
+  async sexClick(@Ctx() ctx: Context & { update: Update.CallbackQueryUpdate }) {
+    const query = ctx.update.callback_query;
+    const userAnswer = 'data' in query ? query.data : null;
+
+    console.log('sex', userAnswer);
+    this.sexChoose = userAnswer;
+    await ctx.reply('Введите количество аккаунтов (до 5-ти)');
+  }
+
+  @On('text')
+  async final(@Ctx() ctx: Context) {
+    const number = ctx.message['text'];
+    console.log(number);
+    console.log(this.socialChoose);
+    console.log(this.cityChoose);
+    console.log(this.sexChoose);
   }
 }
