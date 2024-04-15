@@ -66,6 +66,7 @@ export class StartScene {
 
   @Action('backMenu')
   async backMenu(@Ctx() ctx: SceneContext) {
+    await ctx.deleteMessage(this.MESSAGE_ID);
     const message = await ctx.replyWithHTML(
       `<b>Привет, ${ctx.from.first_name}</b>`,
       startingButtons(),
