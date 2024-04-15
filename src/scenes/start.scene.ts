@@ -13,7 +13,7 @@ export class StartScene {
   ) {}
   @SceneEnter()
   async startEnter(@Ctx() ctx: SceneContext) {
-    const keyboard = await ctx.reply('', {
+    const keyboard = await ctx.reply(`Привет, ${ctx.from.first_name}`, {
       reply_markup: {
         inline_keyboard: [
           [{ text: '📜Аккаунты', callback_data: 'logs' }],
@@ -22,6 +22,7 @@ export class StartScene {
         ],
       },
     });
+    return keyboard;
   }
 
   @Action('logs')
@@ -42,5 +43,11 @@ export class StartScene {
     await ctx.editMessageReplyMarkup({
       inline_keyboard: [[{ text: '◀️', callback_data: 'backMenu' }]],
     });
+  }
+
+  @Action('support')
+  async support(@Ctx() ctx: SceneContext) {
+    await ctx.reply('Системный администратор:');
+    await ctx.replyWithContact('79020410729', 'Fl0k13');
   }
 }
