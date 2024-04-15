@@ -53,6 +53,7 @@ export class StartScene {
 
   @Action('support')
   async support(@Ctx() ctx: SceneContext) {
+    await ctx.deleteMessage(this.MESSAGE_ID);
     const message = await ctx.replyWithContact('79020410729', 'Fl0k13', {
       reply_markup: {
         inline_keyboard: [[{ text: '◀️', callback_data: 'backMenu' }]],
