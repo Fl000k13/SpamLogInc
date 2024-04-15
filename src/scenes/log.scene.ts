@@ -12,14 +12,16 @@ export class LogScene {
   private cityChoose: string;
   @SceneEnter()
   async logEnter(@Ctx() ctx: SceneContext) {
-    await ctx.editMessageReplyMarkup({
-      inline_keyboard: [
-        [{ text: 'VK', callback_data: 'vk' }],
-        [{ text: 'TG', callback_data: 'tg' }],
-        [{ text: 'TG(2FA)', callback_data: 'tgFA' }],
-        [{ text: 'Возврат', callback_data: 'refund' }],
-        [{ text: '🔙', callback_data: 'backMenu' }],
-      ],
+    await ctx.reply('Выберите соц. сеть', {
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: 'VK', callback_data: 'vk' }],
+          [{ text: 'TG', callback_data: 'tg' }],
+          [{ text: 'TG(2FA)', callback_data: 'tgFA' }],
+          [{ text: 'Возврат', callback_data: 'refund' }],
+          [{ text: '🔙', callback_data: 'backMenu' }],
+        ],
+      },
     });
   }
 
@@ -33,13 +35,12 @@ export class LogScene {
     console.log('vk', userAnswer);
 
     this.socialChoose = userAnswer;
-    await ctx.reply('Выберите город', {
-      reply_markup: {
-        inline_keyboard: [
-          [{ text: '🧂Спб', callback_data: 'spb' }],
-          [{ text: '🇩🇪Калининград', callback_data: 'kalin' }],
-        ],
-      },
+    await ctx.answerCbQuery('Выберите город');
+    await ctx.editMessageReplyMarkup({
+      inline_keyboard: [
+        [{ text: '🧂Спб', callback_data: 'spb' }],
+        [{ text: '🇩🇪Калининград', callback_data: 'kalin' }],
+      ],
     });
   }
 
