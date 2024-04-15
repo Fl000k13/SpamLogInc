@@ -20,18 +20,17 @@ export class StartScene {
       startingButtons(),
     );
     this.MESSAGE_ID = message.message_id;
+    console.log(message);
   }
 
   @Action('logs')
   async startLogsScene(@Ctx() ctx: SceneContext) {
-    await ctx.deleteMessage(this.MESSAGE_ID);
     await ctx.scene.enter('logScene');
   }
 
   @Action('profile')
   async profile(@Ctx() ctx: SceneContext) {
     const name = ctx.from.first_name;
-    await ctx.deleteMessage(this.MESSAGE_ID);
     const user = await this.userEntity.findOne({
       where: { id: ctx.from.id },
     });
@@ -46,7 +45,6 @@ export class StartScene {
 
   @Action('support')
   async support(@Ctx() ctx: SceneContext) {
-    await ctx.deleteMessage(this.MESSAGE_ID);
     await ctx.replyWithContact('79020410729', 'Fl0k13');
     await ctx.editMessageReplyMarkup({
       inline_keyboard: [[{ text: '◀️', callback_data: 'backMenu' }]],
