@@ -10,7 +10,6 @@ import { startingButtons } from '../app.buttons';
 @Scene('startScene')
 export class StartScene {
   private MESSAGE_ID?: number;
-  private PROFILE_ID?: number;
   constructor(
     @InjectRepository(User) private readonly userEntity: Repository<User>,
   ) {}
@@ -47,9 +46,6 @@ export class StartScene {
       },
     );
     this.MESSAGE_ID = message.message_id;
-    // await ctx.editMessageReplyMarkup({
-    //   inline_keyboard: [[{ text: '◀️', callback_data: 'backMenu' }]],
-    // });
   }
 
   @Action('support')
@@ -61,9 +57,6 @@ export class StartScene {
       },
     });
     this.MESSAGE_ID = message.message_id;
-    // await ctx.editMessageReplyMarkup({
-    //   inline_keyboard: [[{ text: '◀️', callback_data: 'backMenu' }]],
-    // });
   }
 
   @Action('backMenu')
