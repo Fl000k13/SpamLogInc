@@ -27,10 +27,10 @@ export class AppUpdate {
   //   ctx.scene.enter('logScene');
   // }
 
-  @Action('backMenu')
-  clickBackToMenu(ctx: SceneContext) {
-    ctx.scene.enter('startScene');
-  }
+  // @Action('backMenu')
+  // clickBackToMenu(ctx: SceneContext) {
+  //   ctx.scene.enter('startScene');
+  // }
 
   @Action('support')
   clickSupport(ctx: Context) {

@@ -46,7 +46,20 @@ export class StartScene {
 
   @Action('support')
   async support(@Ctx() ctx: SceneContext) {
-    await ctx.reply('Системный администратор:');
     await ctx.replyWithContact('79020410729', 'Fl0k13');
+    await ctx.editMessageReplyMarkup({
+      inline_keyboard: [[{ text: '◀️', callback_data: 'backMenu' }]],
+    });
+  }
+
+  @Action('backMenu')
+  async backMenu(@Ctx() ctx: SceneContext) {
+    await ctx.editMessageReplyMarkup({
+      inline_keyboard: [
+        [{ text: '📜Аккаунты', callback_data: 'logs' }],
+        [{ text: '📂Мой профиль', callback_data: 'profile' }],
+        [{ text: '❔Поддержка', callback_data: 'support' }],
+      ],
+    });
   }
 }
