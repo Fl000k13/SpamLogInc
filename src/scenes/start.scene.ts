@@ -19,7 +19,7 @@ export class StartScene {
       `<b>Привет, ${ctx.from.first_name}</b>`,
     );
     this.MESSAGE_ID = message.message_id;
-    startingButtons();
+    return startingButtons();
   }
 
   @Action('logs')
