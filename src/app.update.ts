@@ -1,7 +1,8 @@
-import { Action, Hears, Start, Update } from 'nestjs-telegraf';
+import { Action, Ctx, Hears, Start, Update } from "nestjs-telegraf";
 import { AppService } from './app.service';
 import { Context } from 'telegraf';
 import { SceneContext } from 'telegraf/scenes';
+import { startingButtons } from "./app.buttons";
 
 @Update()
 export class AppUpdate {
@@ -32,9 +33,9 @@ export class AppUpdate {
   //   ctx.scene.enter('startScene');
   // }
 
-  @Action('support')
-  clickSupport(ctx: Context) {
-    return this.appService.clickSupport(ctx);
+  @Action('backMenu')
+  async backMenu(@Ctx() ctx: SceneContext) {
+    ctx.scene.enter('startScene');
   }
 
   @Action('vk')

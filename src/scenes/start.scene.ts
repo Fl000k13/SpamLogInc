@@ -10,6 +10,7 @@ import { startingButtons } from '../app.buttons';
 @Scene('startScene')
 export class StartScene {
   private MESSAGE_ID?: number;
+  private PROFILE_ID?: number;
   constructor(
     @InjectRepository(User) private readonly userEntity: Repository<User>,
   ) {}
@@ -36,7 +37,7 @@ export class StartScene {
     });
     console.log(user);
     await ctx.deleteMessage(this.MESSAGE_ID);
-    await ctx.replyWithHTML(
+    const message = await ctx.replyWithHTML(
       `<b>Имя: ${name}</b> \n<b>Номер сотрудника: ${user.number}</b> \n<b>Взято аккаунтов: ${user.monthlylogs}</b> \n<b>Возвратов: ${user.monthlyreturns}</b>`,
       {
         reply_markup: {
@@ -44,6 +45,7 @@ export class StartScene {
         },
       },
     );
+    this.MESSAGE_ID = message.message_id;
     // await ctx.editMessageReplyMarkup({
     //   inline_keyboard: [[{ text: '◀️', callback_data: 'backMenu' }]],
     // });
@@ -51,20 +53,23 @@ export class StartScene {
 
   @Action('support')
   async support(@Ctx() ctx: SceneContext) {
-    await ctx.replyWithContact('79020410729', 'Fl0k13');
-    await ctx.editMessageReplyMarkup({
-      inline_keyboard: [[{ text: '◀️', callback_data: 'backMenu' }]],
+    const message = await ctx.replyWithContact('79020410729', 'Fl0k13', {
+      reply_markup: {
+        inline_keyboard: [[{ text: '◀️', callback_data: 'backMenu' }]],
+      },
     });
+    this.MESSAGE_ID = message.message_id;
+    // await ctx.editMessageReplyMarkup({
+    //   inline_keyboard: [[{ text: '◀️', callback_data: 'backMenu' }]],
+    // });
   }
 
   @Action('backMenu')
   async backMenu(@Ctx() ctx: SceneContext) {
-    await ctx.editMessageReplyMarkup({
-      inline_keyboard: [
-        [{ text: '📜Аккаунты', callback_data: 'logs' }],
-        [{ text: '📂Мой профиль', callback_data: 'profile' }],
-        [{ text: '❔Поддержка', callback_data: 'support' }],
-      ],
-    });
+    const message = await ctx.replyWithHTML(
+      `<b>Привет, ${ctx.from.first_name}</b>`,
+      startingButtons(),
+    );
+    this.MESSAGE_ID = message.message_id;
   }
 }
