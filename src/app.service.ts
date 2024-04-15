@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { Context, Telegraf } from 'telegraf';
 import {
-  cityButtons, cityGUButtons,
+  cityButtons,
+  cityGUButtons,
   logsButtons,
-  sexButtons, sexFAButtons,
-  startingButtons
-} from "./app.buttons";
+  sexButtons,
+  sexFAButtons,
+  startingButtons,
+} from './app.buttons';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
@@ -21,45 +23,36 @@ export class AppService {
     @InjectBot() private readonly bot: Telegraf<Context>,
   ) {}
   async startCommand(ctx: Context) {
-    const chatId = '194088690';
-    const userId = ctx.from.id;
-
     try {
-      const chatMember = await ctx.telegram.getChatMember(chatId, userId);
+      console.log(ctx.from.id);
+      const user = await this.userEntity.findOne({
+        where: { id: ctx.from.id },
+      });
+      console.log(user);
 
-      if (
-        chatMember.status === 'member' ||
-        chatMember.status === 'administrator'
-      ) {
-        console.log(ctx.from.id);
-        const user = await this.userEntity.findOne({
-          where: { id: ctx.from.id },
+      if (user === null) {
+        console.log('creating');
+        const newUser = this.userEntity.create({
+          id: ctx.from.id,
+          number: Math.floor(Math.random() * (10000 - 19999) + 10000),
+          name: ctx.from.first_name,
+          monthlylogs: 0,
+          monthlyreturns: 0,
         });
-        console.log(user);
-
-        if (user === null) {
-          console.log('creating');
-          const newUser = this.userEntity.create({
-            id: ctx.from.id,
-            number: Math.floor(Math.random() * (10000 - 19999) + 10000),
-            name: ctx.from.first_name,
-            monthlylogs: 0,
-            monthlyreturns: 0,
-          });
-          await this.userEntity.save(newUser);
-        }
-        await ctx.reply(`Привет, ${ctx.from.first_name}.`, startingButtons());
-      } else {
-        await ctx.reply(
-          'Привет, это хранилище аккаунтов Spam Zone. Перед началом работы обратитесь к системному администратору, для предоставления доступа к платформе.' +
-            'Ежедневные лимиты: Vk - 5шт. Tg - 5шт (не считая замены).',
-        );
+        await this.userEntity.save(newUser);
       }
+
+      await ctx.reply(`Привет, ${ctx.from.first_name}.`, startingButtons());
+      // } else {
+      //   await ctx.reply(
+      //     'Привет, это хранилище аккаунтов Spam Zone. Перед началом работы обратитесь к системному администратору, для предоставления доступа к платформе.' +
+      //       'Ежедневные лимиты: Vk - 5шт. Tg - 5шт (не считая замены).',
+      //   );
+      // }
     } catch (error) {
       console.log(error);
       await ctx.reply(
-        'Привет, это хранилище аккаунтов Spam Zone. Перед началом работы обратитесь к системному администратору, для предоставления доступа к платформе.' +
-          'Ежедневные лимиты: Vk - 5шт. Tg - 5шт (не считая замены).',
+        'Привет, это хранилище аккаунтов Spam Zone. Перед началом работы обратитесь к системному администратору, для предоставления доступа к платформе.',
       );
     }
   }
@@ -110,9 +103,7 @@ export class AppService {
   //   console.log(GU);
   // }
 
-  async clickController(ctx: Context, GU: boolean, type?: string) {
-
-  }
+  async clickController(ctx: Context, GU: boolean, type?: string) {}
 
   async anotherClick(ctx: Context, GU: boolean, type?: string) {
     switch (type) {

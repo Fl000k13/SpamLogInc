@@ -101,7 +101,7 @@ export class LogScene {
     console.log(this.cityChoose);
     console.log(this.sexChoose);
     await ctx.replyWithHTML(
-      `Ты выбрал: \n<b>Соц. сеть</b>${this.#sceneChooser(this.socialChoose)} \n<b>Город:</b>${this.#cityChooser(this.cityChoose)} \n<b>Пол:</b>${this.#sexChooser(this.sexChoose)} \n<b>Кол-во аккаунтов:</b>${number}`,
+      `Ты выбрал: \n<b>Соц. сеть: </b>${this.#sceneChooser(this.socialChoose)} \n<b>Город: </b>${this.#cityChooser(this.cityChoose)} \n<b>Пол: </b>${this.#sexChooser(this.sexChoose)} \n<b>Кол-во аккаунтов: </b>${number}`,
     );
   }
 
