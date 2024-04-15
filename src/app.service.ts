@@ -2,10 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { Context, Telegraf } from 'telegraf';
 import {
   cityButtons,
-  cityGUButtons,
   logsButtons,
   sexButtons,
-  sexFAButtons,
   startingButtons,
 } from './app.buttons';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -69,16 +67,8 @@ export class AppService {
     await ctx.replyWithHTML(`<b>\nВыберите город:</b>`, cityButtons());
   }
 
-  async clickVkGU(ctx: Context) {
-    await ctx.replyWithHTML(`<b>\nВыберите город:</b>`, cityGUButtons());
-  }
-
   async clickTg(ctx: Context) {
     await ctx.replyWithHTML(`<b>\nВыберите пол:</b>`, sexButtons());
-  }
-
-  async clickTgFA(ctx: Context) {
-    await ctx.replyWithHTML(`<b>\nВыберите пол:</b>`, sexFAButtons());
   }
 
   async clickRefund(ctx: Context) {

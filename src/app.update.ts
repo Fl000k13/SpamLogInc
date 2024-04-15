@@ -42,19 +42,9 @@ export class AppUpdate {
     return this.appService.clickVk(ctx);
   }
 
-  @Action('vkGU')
-  clickVkGU(ctx: Context) {
-    return this.appService.clickVkGU(ctx);
-  }
-
   @Action('tg')
   clickTg(ctx: Context) {
     return this.appService.clickTg(ctx);
-  }
-
-  @Action('tgFA')
-  clickTgFA(ctx: Context) {
-    return this.appService.clickTgFA(ctx);
   }
 
   @Action('refund')
