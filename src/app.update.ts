@@ -22,9 +22,14 @@ export class AppUpdate {
   //   return this.appService.clickLogs(ctx);
   // }
 
-  @Action(/logs|backMenu/)
+  @Action('logs')
   clickLogs(ctx: SceneContext) {
     ctx.scene.enter('logScene');
+  }
+
+  @Action('backMenu')
+  clickBackToMenu(ctx: Context) {
+    return this.appService.startCommand(ctx);
   }
 
   @Action('support')
