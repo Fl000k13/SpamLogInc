@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Action, Ctx, On, Scene, SceneEnter } from 'nestjs-telegraf';
+import { Action, Ctx, Hears, Scene, SceneEnter } from 'nestjs-telegraf';
 import { SceneContext } from 'telegraf/scenes';
 import { Update } from 'telegraf/typings/core/types/typegram';
 import { Context } from 'telegraf';
@@ -93,7 +93,7 @@ export class LogScene {
     await ctx.reply('Введите количество аккаунтов (до 5-ти)');
   }
 
-  @On('text')
+  @Hears(['1', '2', '3', '4', '5'])
   async final(@Ctx() ctx: Context) {
     const number = ctx.message['text'];
     console.log(number);
