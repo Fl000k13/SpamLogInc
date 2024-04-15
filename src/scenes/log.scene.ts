@@ -12,7 +12,7 @@ export class LogScene {
   private cityChoose: string;
   @SceneEnter()
   async logEnter(@Ctx() ctx: SceneContext) {
-    await ctx.answerCbQuery('Logs');
+    await ctx.answerCbQuery('backMenu');
     await ctx.editMessageReplyMarkup({
       inline_keyboard: [
         [{ text: 'VK', callback_data: 'vk' }],
