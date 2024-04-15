@@ -13,12 +13,14 @@ export class StartScene {
   ) {}
   @SceneEnter()
   async startEnter(@Ctx() ctx: SceneContext) {
-    await ctx.editMessageReplyMarkup({
-      inline_keyboard: [
-        [{ text: '📜Аккаунты', callback_data: 'logs' }],
-        [{ text: '📂Мой профиль', callback_data: 'profile' }],
-        [{ text: '❔Поддержка', callback_data: 'support' }],
-      ],
+    const keyboard = await ctx.reply('', {
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '📜Аккаунты', callback_data: 'logs' }],
+          [{ text: '📂Мой профиль', callback_data: 'profile' }],
+          [{ text: '❔Поддержка', callback_data: 'support' }],
+        ],
+      },
     });
   }
 
