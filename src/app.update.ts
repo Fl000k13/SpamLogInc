@@ -1,8 +1,7 @@
-import { Action, Ctx, Hears, Start, Update } from "nestjs-telegraf";
+import { Action, Ctx, Hears, Start, Update } from 'nestjs-telegraf';
 import { AppService } from './app.service';
 import { Context } from 'telegraf';
 import { SceneContext } from 'telegraf/scenes';
-import { startingButtons } from "./app.buttons";
 
 @Update()
 export class AppUpdate {
