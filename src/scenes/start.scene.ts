@@ -18,12 +18,14 @@ export class StartScene {
       `<b>Привет, ${ctx.from.first_name}</b>`,
     );
     this.MESSAGE_ID = message.message_id;
-    await ctx.editMessageReplyMarkup({
-      inline_keyboard: [
-        [{ text: '📜Аккаунты', callback_data: 'logs' }],
-        [{ text: '📂Мой профиль', callback_data: 'profile' }],
-        [{ text: '❔Поддержка', callback_data: 'support' }],
-      ],
+    await ctx.editMessageText('Something', {
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '📜Аккаунты', callback_data: 'logs' }],
+          [{ text: '📂Мой профиль', callback_data: 'profile' }],
+          [{ text: '❔Поддержка', callback_data: 'support' }],
+        ],
+      },
     });
   }
 
