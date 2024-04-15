@@ -4,7 +4,6 @@ import { SceneContext } from 'telegraf/scenes';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../entities/user.entity';
 import { Repository } from 'typeorm';
-import { Markup } from 'telegraf';
 
 @Injectable()
 @Scene('startScene')
@@ -19,14 +18,12 @@ export class StartScene {
       `<b>Привет, ${ctx.from.first_name}</b>`,
     );
     this.MESSAGE_ID = message.message_id;
-    await ctx.reply('', {
-      reply_markup: {
-        inline_keyboard: [
-          [{ text: '📜Аккаунты', callback_data: 'logs' }],
-          [{ text: '📂Мой профиль', callback_data: 'profile' }],
-          [{ text: '❔Поддержка', callback_data: 'support' }],
-        ],
-      },
+    await ctx.editMessageReplyMarkup({
+      inline_keyboard: [
+        [{ text: '📜Аккаунты', callback_data: 'logs' }],
+        [{ text: '📂Мой профиль', callback_data: 'profile' }],
+        [{ text: '❔Поддержка', callback_data: 'support' }],
+      ],
     });
   }
 
